@@ -28,10 +28,6 @@ class WordsTableViewController: UITableViewController {
 	
     // MARK: - Table view data source
 	
-//	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//		return " "
-//	}
-	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if vocabController.vocabWords.count > 1 {
 			return "You have \(vocabController.vocabWords.count) words in your list"
@@ -61,7 +57,10 @@ class WordsTableViewController: UITableViewController {
 				self.dismiss(animated: true, completion: nil)
 			})
 			let cancelOption = UIAlertAction(title: "Cancel", style: .cancel, handler: { (dismiss) in
-				self.dismiss(animated: true, completion: nil)
+				self.dismiss(animated: true, completion: {
+					tableView.reloadData() // Tried this per suggestion on Slack
+				})
+//				self.dismiss(animated: true, completion: nil)
 			})
 			deleteController.addAction(deleteOption)
 			deleteController.addAction(cancelOption)
