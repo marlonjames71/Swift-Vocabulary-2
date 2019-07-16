@@ -8,10 +8,11 @@
 
 import UIKit
 
-class AddWordViewController: UIViewController, UITextFieldDelegate {
+class AddWordViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
-	var vocabController: VocabularyController?
+	// MARK: - Outlets & Properties
 	
+	var vocabController: VocabularyController?
 	
 	@IBOutlet weak var wordTextField: UITextField!
 	@IBOutlet weak var definitionTextView: UITextView!
@@ -19,17 +20,17 @@ class AddWordViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var cancelButton: UIButton!
 	
 	
+	// MARK: - Lifecycle
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		definitionTextView.delegate = self
 		wordTextField.delegate = self
-		wordTextField.resignFirstResponder()
-		self.view.endEditing(true)
 		addButton.layer.cornerRadius = 20
 		definitionTextView.layer.cornerRadius = 12
     }
 	
-	//: MARK: - IBActions
+	// MARK: - IBActions
 	
 	@IBAction func addButtonPressed(_ sender: UIButton) {
 		guard let word = wordTextField.text,
@@ -40,5 +41,21 @@ class AddWordViewController: UIViewController, UITextFieldDelegate {
 	
 	@IBAction func cancelButtonPressed(_ sender: UIButton) {
 		self.dismiss(animated: true, completion: nil)
+	}
+	
+	
+	// MARK: - Helper Functions
+	
+	func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+		if text == "\n" {
+			textView.resignFirstResponder()
+			return false
+		}
+		return true
+	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
 	}
 }

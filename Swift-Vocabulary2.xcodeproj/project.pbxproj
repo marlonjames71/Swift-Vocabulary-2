@@ -63,11 +63,10 @@
 			isa = PBXGroup;
 			children = (
 				37D5606622DD153B00BF3866 /* AppDelegate.swift */,
-				37D5606A22DD153B00BF3866 /* Main.storyboard */,
+				37D5608222DD553000BF3866 /* Views */,
 				37D5607D22DD1C0400BF3866 /* ViewControllers */,
 				37D5607C22DD1BFA00BF3866 /* Model */,
 				37D5606D22DD153C00BF3866 /* Assets.xcassets */,
-				37D5606F22DD153C00BF3866 /* LaunchScreen.storyboard */,
 				37D5607222DD153C00BF3866 /* Info.plist */,
 			);
 			path = "Swift-Vocabulary2";
@@ -90,6 +89,15 @@
 				37D5606822DD153B00BF3866 /* DefinitionViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		37D5608222DD553000BF3866 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				37D5606A22DD153B00BF3866 /* Main.storyboard */,
+				37D5606F22DD153C00BF3866 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

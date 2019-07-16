@@ -10,7 +10,13 @@ import UIKit
 
 class DefinitionViewController: UIViewController {
 
+	// MARK: - Outlets
+	
 	@IBOutlet weak var definitionTextView: UITextView!
+	
+	
+	// MARK: - Lifecycle
+	
 	var vocabWord: VocabularyWord? {
 		didSet {
 			updateViews()
@@ -19,9 +25,10 @@ class DefinitionViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 	}
 
+	
+	// MARK: - Methods
 	
 	func updateViews() {
 		guard let vocabWord = vocabWord else { return }
@@ -30,6 +37,5 @@ class DefinitionViewController: UIViewController {
 		definitionTextView.text = vocabWord.definition
 		
 	}
-
 }
 
