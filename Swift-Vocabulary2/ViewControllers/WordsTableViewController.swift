@@ -28,7 +28,11 @@ class WordsTableViewController: UITableViewController {
 	
     // MARK: - Table view data source
 	
-	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+//	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+//		return " "
+//	}
+	
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if vocabController.vocabWords.count > 1 {
 			return "You have \(vocabController.vocabWords.count) words in your list"
 		} else {
@@ -51,7 +55,9 @@ class WordsTableViewController: UITableViewController {
 			let deleteController = UIAlertController(title: "Are you sure you want to delete \"\(word.word)\" from your list?", message: nil, preferredStyle: .actionSheet)
 			let deleteOption = UIAlertAction(title: "Delete", style: .destructive, handler: { (delete) in
 				self.vocabController.vocabWords.remove(at: indexPath.row)
+				let header = tableView.headerView(forSection: 0)
 				tableView.deleteRows(at: [indexPath], with: .fade)
+				header?.textLabel?.text = self.tableView(tableView, titleForHeaderInSection: 0)
 				self.dismiss(animated: true, completion: nil)
 			})
 			let cancelOption = UIAlertAction(title: "Cancel", style: .cancel, handler: { (dismiss) in
@@ -61,6 +67,7 @@ class WordsTableViewController: UITableViewController {
 			deleteController.addAction(cancelOption)
 			self.present(deleteController, animated: true, completion: nil)
 		}
+		
 		return [deleteAction]
 	}
 

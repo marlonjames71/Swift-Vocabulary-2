@@ -14,13 +14,13 @@
         <scene sceneID="VFx-Hg-qf9">
             <objects>
                 <tableViewController id="6WU-Ct-Fwz" customClass="WordsTableViewController" customModule="Swift_Vocabulary2" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="e7B-4o-iy5">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="e7B-4o-iy5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="WordCell" textLabel="1hz-Cc-zIo" rowHeight="60" style="IBUITableViewCellStyleDefault" id="k3d-gK-boz">
-                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k3d-gK-boz" id="XjQ-30-dF4">
                                     <rect key="frame" x="0.0" y="0.0" width="376" height="59.5"/>
@@ -158,7 +158,7 @@
             </objects>
             <point key="canvasLocation" x="332" y="818"/>
         </scene>
-        <!--Definition View Controller-->
+        <!--Title-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="DefinitionViewController" customModule="Swift_Vocabulary2" customModuleProvider="target" sceneMemberID="viewController">
@@ -182,6 +182,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="rk3-rI-FVn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Ein-M6-yLX">
+                            <connections>
+                                <segue destination="kXW-kq-DZZ" kind="popoverPresentation" popoverAnchorBarButtonItem="Ein-M6-yLX" id="oVx-Iw-Am6">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="definitionTextView" destination="oMg-J4-H3P" id="diI-0t-CEI"/>
                     </connections>
@@ -213,4 +222,7 @@
             <point key="canvasLocation" x="-578.26086956521749" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="oVx-Iw-Am6"/>
+    </inferredMetricsTieBreakers>
 </document>
