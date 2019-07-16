@@ -40,6 +40,29 @@ class WordsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return vocabController.vocabWords.count
     }
+	
+	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+		return true
+	}
+	
+	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+		let word = vocabController.vocabWords[indexPath.row]
+		let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+			let deleteController = UIAlertController(title: "Are you sure you want to delete \"\(word.word)\" from your list?", message: nil, preferredStyle: .actionSheet)
+			let deleteOption = UIAlertAction(title: "Delete", style: .destructive, handler: { (delete) in
+				self.vocabController.vocabWords.remove(at: indexPath.row)
+				tableView.deleteRows(at: [indexPath], with: .fade)
+				self.dismiss(animated: true, completion: nil)
+			})
+			let cancelOption = UIAlertAction(title: "Cancel", style: .cancel, handler: { (dismiss) in
+				self.dismiss(animated: true, completion: nil)
+			})
+			deleteController.addAction(deleteOption)
+			deleteController.addAction(cancelOption)
+			self.present(deleteController, animated: true, completion: nil)
+		}
+		return [deleteAction]
+	}
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath)
@@ -49,25 +72,6 @@ class WordsTableViewController: UITableViewController {
         return cell
     }
 	
-	
-	//: MARK: - Trailing Action
-	
-	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-		let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (ac: UIContextualAction, UIView, success) in
-			let deleteAlertController = UIAlertController(title: "Are you sure you want to delete this word?", message: nil, preferredStyle: .actionSheet)
-			let alertCancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-			let alertDeleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-				self.vocabController.vocabWords.remove(at: indexPath.row)
-				self.tableView.reloadData()
-			})
-			deleteAlertController.addAction(alertDeleteButton)
-			deleteAlertController.addAction(alertCancelButton)
-			self.present(deleteAlertController, animated: true, completion: nil)
-		}
-		deleteAction.image = UIImage(named: "icons8-trash-can-30")
-		return UISwipeActionsConfiguration(actions: [deleteAction])
-	}
-
 	
     // MARK: - Navigation
 
